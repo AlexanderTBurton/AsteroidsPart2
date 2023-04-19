@@ -1,6 +1,7 @@
 int numStars = 200; //number of stars
 ArrayList<Star> aStar = new ArrayList<Star>();
 ArrayList<Asteroid> anAsteroid = new ArrayList<Asteroid>();
+float d;
 
 void setup() {
   size(500,500);
@@ -20,9 +21,15 @@ void draw() {
     }
     
   for (int i = 0; i < anAsteroid.size(); i++) {
-      anAsteroid.get(i).show();
-      anAsteroid.get(i).move();
+    anAsteroid.get(i).show();
+    anAsteroid.get(i).move();
+    d = dist((float)anAsteroid.get(i).getMyAsteroidCenterX(), (float)anAsteroid.get(i).getMyAsteroidCenterY(), (float)joe.getMyShipCenterX(), (float)joe.getMyShipCenterY());
+    if(d <= 37) {
+      anAsteroid.remove(i);
+      i--;
+      System.out.println("Ouch");
     }
+  }
   
   joe.show();
   joe.move();
